@@ -1,12 +1,12 @@
 import type {Metadata} from "next";
-import {Inter} from "next/font/google";
+import {Roboto} from "next/font/google";
 import "./globals.css";
 import React, {ReactNode} from "react";
 import {Drawer} from "@/components/drawer";
 import {DrawerMenu} from "@/components/drawermenu";
 import {BookCopy, FolderGit2, LayoutDashboard, SquareChartGantt, Wrench} from "lucide-react";
 
-const inter = Inter({ subsets: ["latin"] });
+const roboto = Roboto({ subsets: ["latin"], weight: ["100", "300", "400", "500", "700", "900"] });
 
 export const metadata: Metadata = {
     title: "DocuHive",
@@ -16,8 +16,8 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: ReactNode }>) {
     return (
         <html lang="en">
-            <body className={inter.className}>
-                <div className={"flex flex-row bg-amber-300"}>
+            <body className={roboto.className}>
+                <div className={"flex flex-row bg-neutral-950"}>
                     <Drawer drawerMenus={[
                         <DrawerMenu key={1}
                                     title={"Getting Started"}

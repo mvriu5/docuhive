@@ -1,8 +1,9 @@
 import { AlignLeft } from "lucide-react";
 import React from "react";
+import {Header} from "@/hooks/useHeaderCollector";
 
 interface PageStoryProps {
-    headers?: string[];
+    headers: Header[];
 }
 
 const PageStory: React.FC<PageStoryProps> = ({headers}) => {
@@ -16,7 +17,7 @@ const PageStory: React.FC<PageStoryProps> = ({headers}) => {
             {headers?.map((header, index) => (
                 <div key={index}>
                     <span className={"text-xs text-neutral-300 cursor-pointer hover:text-amber-300"}>
-                        {header}
+                        {header.text}
                     </span>
                 </div>
             ))}
