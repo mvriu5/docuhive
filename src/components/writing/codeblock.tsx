@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {CopyButton} from "@/components/copybutton";
+import {CopyButton} from "@/components/writing/copybutton";
 import TextareaAutosize from 'react-textarea-autosize';
 import Prism from "prismjs";
 

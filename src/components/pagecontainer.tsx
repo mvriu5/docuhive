@@ -1,7 +1,7 @@
 import React, {ReactNode} from "react";
 import {PageStory} from "@/components/pagestory";
 import {Breadcrumb} from "@/components/breadcrumb";
-import {BigHeader} from "@/components/header";
+import {BigHeader} from "@/components/writing/header";
 import {Header} from "@/hooks/useHeaderCollector";
 
 interface PageContainerProps {

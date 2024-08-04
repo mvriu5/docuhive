@@ -14,31 +14,47 @@ interface DrawerMenuProps {
     title: string;
     icon?: ReactNode;
     items: PageItem[];
+    open?: boolean;
+    openPage?: string | null;
+    onToggleMenu?: (title: string) => void;
+    onSetOpenPage?: (href: string) => void;
 }
 
-const DrawerMenu: React.FC<DrawerMenuProps> = ({ title, icon, items }) => {
-    const [open, setOpen] = useState(false);
+const DrawerMenu: React.FC<DrawerMenuProps> = ({ title, icon, items, open, openPage, onSetOpenPage, onToggleMenu }) => {
+    const [isOpen, setIsOpen] = useState(open);
     const router = useRouter();
+
+    const handleMenuToggle = () => {
+        setIsOpen(!isOpen);
+        onToggleMenu && onToggleMenu(title);
+    }
+
+    const handlePageClick = (href: string) => {
+        onSetOpenPage && onSetOpenPage(href);
+        router.push(href);
+    }
 
     return (
         <div className={"w-full flex flex-col space-y-2"}>
             <div className={"flex flex-row space-x-4 items-center justify-between p-2 hover:bg-neutral-800 rounded-md cursor-pointer"}
-                 onClick={() => setOpen(!open)}
+                 onClick={handleMenuToggle}
             >
-                <div className={cn("flex flex-row space-x-4", open ? "text-amber-300" : "text-white")}>
+                <div className={cn("flex flex-row space-x-4", isOpen ? "text-amber-300" : "text-white")}>
                     {icon}
                     <span className={"text-sm text-white truncate"}>{title}</span>
                 </div>
-                {open ? <ChevronDown size={20}/> : <ChevronRight size={20}/>}
+                {isOpen ? <ChevronDown size={20}/> : <ChevronRight size={20}/>}
             </div>
 
-            {open &&
+            {isOpen &&
                 <div className={"flex flex-col pl-4 border-l-2 border-neutral-800 space-y-2 ml-4"}>
                     {items.map((item, index) => (
-                        <div key={index} className={"px-4 py-1 rounded-md cursor-pointer hover:bg-neutral-800"}
-                             onClick={() => router.push(item.href)}
+                        <div key={index} className={cn("px-4 py-1 rounded-md cursor-pointer",
+                            openPage === item.href ? "bg-neutral-800 text-white" : "hover:bg-neutral-800 text-neutral-300"
+                        )}
+                             onClick={() => handlePageClick(item.href)}
                         >
-                            <span className={"text-sm text-neutral-300 truncate"}>{item.title}</span>
+                            <span className={"text-sm truncate"}>{item.title}</span>
                         </div>
                     ))}
                 </div>
@@ -48,3 +64,4 @@ const DrawerMenu: React.FC<DrawerMenuProps> = ({ title, icon, items }) => {
 }
 
 export { DrawerMenu };
+export type { DrawerMenuProps }

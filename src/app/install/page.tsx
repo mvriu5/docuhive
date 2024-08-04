@@ -2,11 +2,11 @@
 
 import React from "react";
 import {PageContainer} from "@/components/pagecontainer";
-import {MediumHeader, SmallHeader} from "@/components/header";
+import {MediumHeader, SmallHeader} from "@/components/writing/header";
 import {useHeadersCollector} from "@/hooks/useHeaderCollector";
-import {Passage} from "@/components/passage";
-import {Seperator} from "@/components/Seperator";
-import {CodeBlock} from "@/components/codeblock";
+import {Passage} from "@/components/writing/passage";
+import {Seperator} from "@/components/writing/Seperator";
+import {CodeBlock} from "@/components/writing/codeblock";
 
 
 export default function Page() {
